@@ -48,10 +48,10 @@ class BitcoinMainnet(AbstractNet):
 
     TESTNET = False
     WIF_PREFIX = 0x80
-    ADDRTYPE_P2PKH = 81
-    ADDRTYPE_P2SH = 5
-    SEGWIT_HRP = "bz"
-    GENESIS = "000009f7e55e9e3b4781e22bd87a7cfa4acada9e4340d43ca738bf4e9fb8f5ce"
+    ADDRTYPE_P2PKH = 25
+    ADDRTYPE_P2SH = 85
+    SEGWIT_HRP = "bm"
+    GENESIS = "000008f3b6bd10c2d03b06674a006b8d9731f6cb58179ef1eee008cee2209603"
     DEFAULT_PORTS = {'t': '50001', 's': '50002'}
     DEFAULT_SERVERS = read_json('servers.json', {})
     CHECKPOINTS = read_json('checkpoints.json', [])
@@ -70,7 +70,7 @@ class BitcoinMainnet(AbstractNet):
         'p2wpkh':      0x04b24746,  # zpub
         'p2wsh':       0x02aa7ed3,  # Zpub
     }
-    BIP44_COIN_TYPE = 123
+    BIP44_COIN_TYPE = 25252
 
 
 class BitcoinTestnet(AbstractNet):
@@ -79,8 +79,8 @@ class BitcoinTestnet(AbstractNet):
     WIF_PREFIX = 0xef
     ADDRTYPE_P2PKH = 111
     ADDRTYPE_P2SH = 196
-    SEGWIT_HRP = "tz"
-    GENESIS = "00003a0c79f595bddb7f37a22eb63fd23c541ab6a7dd7efd0215e7029bde225c"
+    SEGWIT_HRP = "tb"
+    GENESIS = "000000000933ea01ad0ee984209779baaec3ced90fa3f408719526f8d77f4943"
     DEFAULT_PORTS = {'t': '51001', 's': '51002'}
     DEFAULT_SERVERS = read_json('servers_testnet.json', {})
     CHECKPOINTS = read_json('checkpoints_testnet.json', [])
