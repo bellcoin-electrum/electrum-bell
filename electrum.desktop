@@ -2,19 +2,19 @@
 # sudo desktop-file-install electrum.desktop
 
 [Desktop Entry]
-Comment=Lightweight BitZeny Client
+Comment=Lightweight Bellcoin Client
 Exec=sh -c "PATH=\"\\$HOME/.local/bin:\\$PATH\"; electrum %u"
-GenericName[en_US]=BitZeny Wallet
-GenericName=BitZeny Wallet
+GenericName[en_US]=Bellcoin Wallet
+GenericName=Bellcoin Wallet
 Icon=electrum
-Name[en_US]=Electrum BitZeny Wallet
-Name=Electrum BitZeny Wallet
+Name[en_US]=Electrum Bellcoin Wallet
+Name=Electrum Bellcoin Wallet
 Categories=Finance;Network;
 StartupNotify=true
 StartupWMClass=electrum
 Terminal=false
 Type=Application
-MimeType=x-scheme-handler/bitzeny;
+MimeType=x-scheme-handler/bellcoin;
 Actions=Testnet;
 
 [Desktop Action Testnet]

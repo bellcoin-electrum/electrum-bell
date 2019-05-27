@@ -61,18 +61,18 @@ def inv_dict(d):
 ca_path = certifi.where()
 
 
-base_units = {'ZNY':8, 'mZNY':5, 'uZNY':2, 'sat':0}
+base_units = {'BELL':8, 'mBELL':5, 'uBELL':2, 'sat':0}
 base_units_inverse = inv_dict(base_units)
-base_units_list = ['ZNY', 'mZNY', 'uZNY', 'sat']  # list(dict) does not guarantee order
+base_units_list = ['BELL', 'mBELL', 'uBELL', 'sat']  # list(dict) does not guarantee order
 
-DECIMAL_POINT_DEFAULT = 8  # ZNY
+DECIMAL_POINT_DEFAULT = 8  # BELL
 
 
 class UnknownBaseUnit(Exception): pass
 
 
 def decimal_point_to_base_unit_name(dp: int) -> str:
-    # e.g. 8 -> "ZNY"
+    # e.g. 8 -> "BELL"
     try:
         return base_units_inverse[dp]
     except KeyError:
@@ -80,7 +80,7 @@ def decimal_point_to_base_unit_name(dp: int) -> str:
 
 
 def base_unit_name_to_decimal_point(unit_name: str) -> int:
-    # e.g. "ZNY" -> 8
+    # e.g. "BELL" -> 8
     try:
         return base_units[unit_name]
     except KeyError:
@@ -148,7 +148,7 @@ class Satoshis(object):
         return 'Satoshis(%d)'%self.value
 
     def __str__(self):
-        return format_satoshis(self.value) + " ZNY"
+        return format_satoshis(self.value) + " BELL"
 
     def __eq__(self, other):
         return self.value == other.value
@@ -483,11 +483,11 @@ def user_dir():
     if 'ANDROID_DATA' in os.environ:
         return android_data_dir()
     elif os.name == 'posix':
-        return os.path.join(os.environ["HOME"], ".electrum-zny")
+        return os.path.join(os.environ["HOME"], ".electrum-bell")
     elif "APPDATA" in os.environ:
-        return os.path.join(os.environ["APPDATA"], "Electrum-ZNY")
+        return os.path.join(os.environ["APPDATA"], "Electrum-BELL")
     elif "LOCALAPPDATA" in os.environ:
-        return os.path.join(os.environ["LOCALAPPDATA"], "Electrum-ZNY")
+        return os.path.join(os.environ["LOCALAPPDATA"], "Electrum-BELL")
     else:
         #raise Exception("No home directory found in environment variables.")
         return
@@ -646,19 +646,11 @@ def time_difference(distance_in_time, include_seconds):
         return "over %d years" % (round(distance_in_minutes / 525600))
 
 mainnet_block_explorers = {
-    'insight.bitzeny.jp': ('https://insight.bitzeny.jp/',
-                       {'tx': 'tx/', 'addr': 'address/'}),
-    'zeny.insight.monaco-ex.org': ('https://zeny.insight.monaco-ex.org/',
-                       {'tx': 'tx/', 'addr': 'address/'}),
-    'electrumx1.bitzeny.site': ('https://electrumx1.bitzeny.site/',
-                       {'tx': 'tx/', 'addr': 'address/'}),
-    'zny.blockbook.ovh': ('https://zny.blockbook.ovh/',
+    'bellcoin-blockbook.ilmango.work': ('https://bellcoin-blockbook.ilmango.work/',
                        {'tx': 'tx/', 'addr': 'address/'}),
 }
 
 testnet_block_explorers = {
-    'test-zny.blockbook.ovh': ('https://test-zny.blockbook.ovh/',
-                       {'tx': 'tx/', 'addr': 'address/'}),
     'system default': ('blockchain:',
                        {'tx': 'tx/', 'addr': 'address/'}),
 }
@@ -669,7 +661,7 @@ def block_explorer_info():
 
 def block_explorer(config: 'SimpleConfig') -> str:
     from . import constants
-    default_ = 'zny.blockbook.ovh'
+    default_ = 'bellcoin-blockbook.ilmango.work'
     be_key = config.get('block_explorer', default_)
     be = block_explorer_info().get(be_key)
     return be_key if be is not None else default_
@@ -698,12 +690,12 @@ def parse_URI(uri: str, on_pr: Callable=None) -> dict:
 
     if ':' not in uri:
         if not bitcoin.is_address(uri):
-            raise Exception("Not a bitzeny address")
+            raise Exception("Not a bellcoin address")
         return {'address': uri}
 
     u = urllib.parse.urlparse(uri)
-    if u.scheme != 'bitzeny':
-        raise Exception("Not a bitzeny URI")
+    if u.scheme != 'bellcoin':
+        raise Exception("Not a bellcoin URI")
     address = u.path
 
     # python for android fails to parse query
@@ -720,7 +712,7 @@ def parse_URI(uri: str, on_pr: Callable=None) -> dict:
     out = {k: v[0] for k, v in pq.items()}
     if address:
         if not bitcoin.is_address(address):
-            raise Exception("Invalid bitzeny address:" + address)
+            raise Exception("Invalid bellcoin address:" + address)
         out['address'] = address
     if 'amount' in out:
         am = out['amount']
@@ -769,7 +761,7 @@ def create_URI(addr, amount, message):
         query.append('amount=%s'%format_satoshis_plain(amount))
     if message:
         query.append('message=%s'%urllib.parse.quote(message))
-    p = urllib.parse.ParseResult(scheme='bitzeny', netloc='', path=addr, params='', query='&'.join(query), fragment='')
+    p = urllib.parse.ParseResult(scheme='bellcoin', netloc='', path=addr, params='', query='&'.join(query), fragment='')
     return urllib.parse.urlunparse(p)
 
 

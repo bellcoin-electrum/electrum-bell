@@ -140,76 +140,11 @@ async def _to_fiat(self, btc, ccy, res):
         res['USD'] = btcusd * btc
 
 
-class CoinGecko(ExchangeBase):
+class BiteBTC(ExchangeBase):
 
     async def get_rates(self, ccy):
-        json = await self.get_json('api.coingecko.com', '/api/v3/simple/price?ids=bitzeny&vs_currencies=btc')
-        btc = Decimal(json['bitzeny']['btc'])
-
-        res = {}
-        if ccy == 'BTC':
-            res['BTC'] = btc
-        else:
-            await _to_fiat(self, btc, ccy, res)
-
-        return res
-
-class CoinMarketCap(ExchangeBase):
-
-    async def get_rates(self, ccy):
-        json = await self.get_json('api.coinmarketcap.com', '/v1/ticker/Bitzeny/?convert=JPY')
-        btc = Decimal(json[0]['price_btc'])
-        usd = Decimal(json[0]['price_usd'])
-        jpy = Decimal(json[0]['price_jpy'])
-
-        res = {}
-        if ccy == 'BTC':
-            res['BTC'] = btc
-        elif ccy == 'USD':
-            res['USD'] = usd
-        elif ccy == 'JPY':
-            res['JPY'] = jpy
-        else:
-            await _to_fiat(self, btc, ccy, res)
-
-        return res
-
-
-class CryptoBridge(ExchangeBase):
-
-    async def get_rates(self, ccy):
-        json = await self.get_json('api.crypto-bridge.org', '/api/v1/ticker/ZNY_BTC')
-        btc = Decimal(json['last'])
-
-        res = {}
-        if ccy == 'BTC':
-            res['BTC'] = btc
-        else:
-            await _to_fiat(self, btc, ccy, res)
-
-        return res
-
-
-#class CryptoPia(ExchangeBase):
-#
-#    async def get_rates(self, ccy):
-#        json = await self.get_json('cryptopia.co.nz', '/api/GetMarket/ZNY_BTC')
-#        btc = Decimal(json['Data']['LastPrice'])
-#
-#        res = {}
-#        if ccy == 'BTC':
-#            res['BTC'] = btc
-#        else:
-#            await _to_fiat(self, btc, ccy, res)
-#
-#        return res
-#
-
-class TradeSatoshi(ExchangeBase):
-
-    async def get_rates(self, ccy):
-        json = await self.get_json('tradesatoshi.com', '/api/public/getticker?market=ZNY_BTC')
-        btc = Decimal(json['result']['last'])
+        json = await self.get_json('bitebtc.com', '/api/v1/ticker?market=koto_btc')
+        btc = Decimal(json['result']['price'])
 
         res = {}
         if ccy == 'BTC':
@@ -355,7 +290,7 @@ class FxThread(ThreadJob):
         return self.config.get("currency", "JPY")
 
     def config_exchange(self):
-        return self.config.get('use_exchange', 'CryptoBridge')
+        return self.config.get('use_exchange', 'BiteBTC')
 
     def show_history(self):
         return self.is_enabled() and self.get_history_config() and self.ccy in self.exchange.history_ccys()
@@ -371,7 +306,7 @@ class FxThread(ThreadJob):
             self.network.asyncio_loop.call_soon_threadsafe(self._trigger.set)
 
     def set_exchange(self, name):
-        class_ = globals().get(name, CryptoBridge)
+        class_ = globals().get(name, BiteBTC)
         self.print_error("using exchange", name)
         if self.config_exchange() != name:
             self.config.set_key('use_exchange', name, True)

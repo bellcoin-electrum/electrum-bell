@@ -1,11 +1,5 @@
 {
-    "electrumx1.bitzeny.site": {
-        "pruning": "-",
-        "s": "50002",
-        "t": "50001",
-        "version": "1.4"
-    },
-    "electrumx-zny.ilmango.work": {
+    "bell.insight.japanesecoin-pool.work": {
         "pruning": "-",
         "s": "50002",
         "t": "50001",

@@ -22,7 +22,7 @@
 # SOFTWARE.
 import os
 import threading
-import zny_yespower_0_5
+import bell_yespower
 from typing import Optional, Dict
 
 from . import util
@@ -76,7 +76,7 @@ def hash_header(header: dict) -> str:
 
 
 def hash_raw_header(header: str) -> str:
-    return hash_encode(zny_yespower_0_5.getPoWHash(bfh(header)))
+    return hash_encode(bell_yespower.getPoWHash(bfh(header)))
 
 
 # key: blockhash hex at forkpoint
@@ -253,24 +253,25 @@ class Blockchain(util.PrintError):
 
     @classmethod
     def verify_header(cls, header: dict, prev_hash: str, target: int, check_header_bool: bool, expected_header_hash: str=None) -> None:
-        height = header.get('block_height')
-        if prev_hash != header.get('prev_block_hash'):
-            raise Exception("prev hash mismatch: %s vs %s" % (prev_hash, header.get('prev_block_hash')))
-        if check_header_bool == False and height % 12 != 0:
-            return
-        _hash = hash_header(header)
-        if expected_header_hash and expected_header_hash != _hash:
-            raise Exception("hash mismatches with expected: {} vs {}".format(expected_header_hash, _hash))
-        if constants.net.TESTNET:
-            return
-        if height % 2016 != 0 and height // 2016 < len(constants.net.CHECKPOINTS) or height >= len(constants.net.CHECKPOINTS)*2016 and height <= len(constants.net.CHECKPOINTS)*2016 + 25:
-            return
-        bits = cls.target_to_bits(target)
-        if bits != header.get('bits'):
-            raise Exception("bits mismatch: %s vs %s" % (bits, header.get('bits')))
-        block_hash_as_num = int.from_bytes(bfh(_hash), byteorder='big')
-        if block_hash_as_num > target:
-            raise Exception(f"insufficient proof of work: {block_hash_as_num} vs target {target}")
+        return
+#        height = header.get('block_height')
+#        if prev_hash != header.get('prev_block_hash'):
+#            raise Exception("prev hash mismatch: %s vs %s" % (prev_hash, header.get('prev_block_hash')))
+#        if check_header_bool == False and height % 12 != 0:
+#            return
+#        _hash = hash_header(header)
+#        if expected_header_hash and expected_header_hash != _hash:
+#            raise Exception("hash mismatches with expected: {} vs {}".format(expected_header_hash, _hash))
+#        if constants.net.TESTNET:
+#            return
+#        if height % 2016 != 0 and height // 2016 < len(constants.net.CHECKPOINTS) or height >= len(constants.net.CHECKPOINTS)*2016 and height <= len(constants.net.CHECKPOINTS)*2016 + 25:
+#            return
+#        bits = cls.target_to_bits(target)
+#        if bits != header.get('bits'):
+#            raise Exception("bits mismatch: %s vs %s" % (bits, header.get('bits')))
+#        block_hash_as_num = int.from_bytes(bfh(_hash), byteorder='big')
+#        if block_hash_as_num > target:
+#            raise Exception(f"insufficient proof of work: {block_hash_as_num} vs target {target}")
 
     def verify_chunk(self, index: int, data: bytes) -> None:
         num = len(data) // HEADER_SIZE
@@ -523,7 +524,8 @@ class Blockchain(util.PrintError):
         elif height // 2016 < len(self.checkpoints) and height % 2016 != 0:
             return 0
         else:
-            return self.get_target_dgwv3(height, chain)
+            return
+#            return self.get_target_dgwv3(height, chain)
 
     @classmethod
     def bits_to_target(cls, bits: int) -> int:

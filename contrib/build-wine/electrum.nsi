@@ -6,8 +6,8 @@
 ;--------------------------------
 ;Variables
 
-  !define PRODUCT_NAME "Electrum-ZNY"
-  !define PRODUCT_WEB_SITE "https://github.com/bitzeny-electrum/electrum-zny"
+  !define PRODUCT_NAME "Electrum-BELL"
+  !define PRODUCT_WEB_SITE "https://github.com/bellcoin-electrum/electrum-bell"
   !define PRODUCT_PUBLISHER "Electrum Technologies GmbH"
   !define PRODUCT_UNINST_KEY "Software\Microsoft\Windows\CurrentVersion\Uninstall\${PRODUCT_NAME}"
 
@@ -16,7 +16,7 @@
 
   ;Name and file
   Name "${PRODUCT_NAME}"
-  OutFile "dist/electrum-zny-setup.exe"
+  OutFile "dist/electrum-bell-setup.exe"
 
   ;Default installation folder
   InstallDir "$PROGRAMFILES\${PRODUCT_NAME}"
@@ -72,7 +72,7 @@
   !define MUI_ABORTWARNING
   !define MUI_ABORTWARNING_TEXT "Are you sure you wish to abort the installation of ${PRODUCT_NAME}?"
   
-  !define MUI_ICON "c:\electrum-zny\electrum\gui\icons\electrum.ico"
+  !define MUI_ICON "c:\electrum-bell\electrum\gui\icons\electrum.ico"
   
 ;--------------------------------
 ;Pages
@@ -110,8 +110,8 @@ Section
   Delete "$SMPROGRAMS\${PRODUCT_NAME}\*.*"
   
   ;Files to pack into the installer
-  File /r "dist\electrum-zny\*.*"
-  File "c:\electrum-zny\electrum\gui\icons\electrum.ico"
+  File /r "dist\electrum-bell\*.*"
+  File "c:\electrum-bell\electrum\gui\icons\electrum.ico"
 
   ;Store installation folder
   WriteRegStr HKCU "Software\${PRODUCT_NAME}" "" $INSTDIR
@@ -122,21 +122,21 @@ Section
 
   ;Create desktop shortcut
   DetailPrint "Creating desktop shortcut..."
-  CreateShortCut "$DESKTOP\${PRODUCT_NAME}.lnk" "$INSTDIR\electrum-zny-${PRODUCT_VERSION}.exe" ""
+  CreateShortCut "$DESKTOP\${PRODUCT_NAME}.lnk" "$INSTDIR\electrum-bell-${PRODUCT_VERSION}.exe" ""
 
   ;Create start-menu items
   DetailPrint "Creating start-menu items..."
   CreateDirectory "$SMPROGRAMS\${PRODUCT_NAME}"
   CreateShortCut "$SMPROGRAMS\${PRODUCT_NAME}\Uninstall.lnk" "$INSTDIR\Uninstall.exe" "" "$INSTDIR\Uninstall.exe" 0
-  CreateShortCut "$SMPROGRAMS\${PRODUCT_NAME}\${PRODUCT_NAME}.lnk" "$INSTDIR\electrum-zny-${PRODUCT_VERSION}.exe" "" "$INSTDIR\electrum-zny-${PRODUCT_VERSION}.exe" 0
-  CreateShortCut "$SMPROGRAMS\${PRODUCT_NAME}\${PRODUCT_NAME} Testnet.lnk" "$INSTDIR\electrum-zny-${PRODUCT_VERSION}.exe" "--testnet" "$INSTDIR\electrum-zny-${PRODUCT_VERSION}.exe" 0
+  CreateShortCut "$SMPROGRAMS\${PRODUCT_NAME}\${PRODUCT_NAME}.lnk" "$INSTDIR\electrum-bell-${PRODUCT_VERSION}.exe" "" "$INSTDIR\electrum-bell-${PRODUCT_VERSION}.exe" 0
+  CreateShortCut "$SMPROGRAMS\${PRODUCT_NAME}\${PRODUCT_NAME} Testnet.lnk" "$INSTDIR\electrum-bell-${PRODUCT_VERSION}.exe" "--testnet" "$INSTDIR\electrum-bell-${PRODUCT_VERSION}.exe" 0
 
 
-  ;Links bitzeny: URI's to Electrum
-  WriteRegStr HKCU "Software\Classes\bitzeny" "" "URL:bitzeny Protocol"
-  WriteRegStr HKCU "Software\Classes\bitzeny" "URL Protocol" ""
-  WriteRegStr HKCU "Software\Classes\bitzeny" "DefaultIcon" "$\"$INSTDIR\electrum.ico, 0$\""
-  WriteRegStr HKCU "Software\Classes\bitzeny\shell\open\command" "" "$\"$INSTDIR\electrum-zny-${PRODUCT_VERSION}.exe$\" $\"%1$\""
+  ;Links bellcoin: URI's to Electrum
+  WriteRegStr HKCU "Software\Classes\bellcoin" "" "URL:bellcoin Protocol"
+  WriteRegStr HKCU "Software\Classes\bellcoin" "URL Protocol" ""
+  WriteRegStr HKCU "Software\Classes\bellcoin" "DefaultIcon" "$\"$INSTDIR\electrum.ico, 0$\""
+  WriteRegStr HKCU "Software\Classes\bellcoin\shell\open\command" "" "$\"$INSTDIR\electrum-bell-${PRODUCT_VERSION}.exe$\" $\"%1$\""
 
   ;Adds an uninstaller possibility to Windows Uninstall or change a program section
   WriteRegStr HKCU "${PRODUCT_UNINST_KEY}" "DisplayName" "$(^Name)"
@@ -167,7 +167,7 @@ Section "Uninstall"
   Delete "$SMPROGRAMS\${PRODUCT_NAME}\*.*"
   RMDir  "$SMPROGRAMS\${PRODUCT_NAME}"
   
-  DeleteRegKey HKCU "Software\Classes\bitzeny"
+  DeleteRegKey HKCU "Software\Classes\bellcoin"
   DeleteRegKey HKCU "Software\${PRODUCT_NAME}"
   DeleteRegKey HKCU "${PRODUCT_UNINST_KEY}"
 SectionEnd

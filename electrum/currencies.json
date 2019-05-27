@@ -1,20 +1,5 @@
 {
-    "CoinGecko": [
-        "BTC",
-        "USD",
-        "JPY"
-    ],
-    "CoinMarketCap": [
-        "BTC",
-        "USD",
-        "JPY"
-    ],
-    "CryptoBridge": [
-        "BTC",
-        "USD",
-        "JPY"
-    ],
-    "TradeSatoshi": [
+    "BiteBTC": [
         "BTC",
         "USD",
         "JPY"

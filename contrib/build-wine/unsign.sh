@@ -21,8 +21,8 @@ echo "Found $(ls dist/*.exe | wc -w) files to verify."
 for mine in $(ls dist/*.exe); do
     echo "---------------"
     f=$(basename $mine)
-    echo "Downloading https://zny.electrum-jp.net/$version/$f"
-    wget -q https://zny.electrum-jp.net/$version/$f -O signed/$f
+    echo "Downloading https://bell.electrum-jp.net/$version/$f"
+    wget -q https://bell.electrum-jp.net/$version/$f -O signed/$f
     out="signed/stripped/$f"
     size=$( wc -c < $mine )
     # Step 1: Remove PE signature from signed binary

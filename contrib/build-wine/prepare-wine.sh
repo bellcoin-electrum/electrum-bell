@@ -17,7 +17,7 @@ LIBUSB_FILENAME=libusb-1.0.22.7z
 LIBUSB_URL=https://prdownloads.sourceforge.net/project/libusb/libusb-1.0/libusb-1.0.22/$LIBUSB_FILENAME?download
 LIBUSB_SHA256=671f1a420757b4480e7fadc8313d6fb3cbb75ca00934c417c1efa6e77fb8779b
 
-YESPOWER_PYTHON_URL=https://github.com/bitzeny-electrum/zny_yespower_0_5_python3/releases/download/v1.0.1/zny_yespower_0_5-1.0.1-cp36-cp36m-win32.whl
+YESPOWER_PYTHON_URL=https://github.com/bellcoin-electrum/bell_yespower_python3/releases/download/v1.0.2/bell_yespower-1.0.2-cp36-cp36m-win32.whl
 
 PYTHON_VERSION=3.6.8
 
@@ -39,7 +39,7 @@ set -e
 wine 'wineboot'
 
 
-cd /tmp/electrum-zny-build
+cd /tmp/electrum-bell-build
 
 # Install Python
 # note: you might need "sudo apt-get install dirmngr" for the following
@@ -90,7 +90,7 @@ tar Jxfv $LIB_GCC_FILENAME
 
 cp bin/libgcc_s_dw2-1.dll $WINEPREFIX/drive_c/$PYTHON_FOLDER/Lib/site-packages/
 
-# install zny_yespower_0_5
+# install bell_yespower
 $PYTHON -m pip install $YESPOWER_PYTHON_URL
 
 mkdir -p $WINEPREFIX/drive_c/tmp

@@ -18,8 +18,8 @@ from electrum.util import PrintError, make_aiohttp_session
 
 
 class UpdateCheck(QWidget, PrintError):
-    url = "https://raw.githubusercontent.com/bitzeny-electrum/bitzeny-electrum.github.io/master/version"
-    download_url = "https://zny.electrum-jp.net"
+    url = "https://raw.githubusercontent.com/bellcoin-electrum/bellcoin-electrum.github.io/master/version"
+    download_url = "https://bell.electrum-jp.net"
 
     VERSION_ANNOUNCEMENT_SIGNING_KEYS = (
         "ZwbjGkzEBuY9CCuwoRkna3LBRAGY2HcWMH",
@@ -28,7 +28,7 @@ class UpdateCheck(QWidget, PrintError):
     def __init__(self, main_window, latest_version=None):
         self.main_window = main_window
         QWidget.__init__(self)
-        self.setWindowTitle('Electrum for BitZeny - ' + _('Update Check'))
+        self.setWindowTitle('Electrum for Bellcoin - ' + _('Update Check'))
         self.content = QVBoxLayout()
         self.content.setContentsMargins(*[10]*4)
 

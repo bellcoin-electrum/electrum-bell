@@ -46,8 +46,8 @@ from .transaction import TxOutput
 from .network import Network
 
 
-REQUEST_HEADERS = {'Accept': 'application/bitzeny-paymentrequest', 'User-Agent': 'Electrum for BitZeny'}
-ACK_HEADERS = {'Content-Type':'application/bitzeny-payment','Accept':'application/bitzeny-paymentack','User-Agent':'Electrum for BitZeny'}
+REQUEST_HEADERS = {'Accept': 'application/bellcoin-paymentrequest', 'User-Agent': 'Electrum for Bellcoin'}
+ACK_HEADERS = {'Content-Type':'application/bellcoin-payment','Accept':'application/bellcoin-paymentack','User-Agent':'Electrum for Bellcoin'}
 
 ca_path = certifi.where()
 ca_list = None
@@ -78,9 +78,9 @@ async def get_payment_request(url: str) -> 'PaymentRequest':
                 async with session.get(url) as response:
                     resp_content = await response.read()
                     response.raise_for_status()
-                    # Guard against `bitzeny:`-URIs with invalid payment request URLs
+                    # Guard against `bellcoin:`-URIs with invalid payment request URLs
                     if "Content-Type" not in response.headers \
-                    or response.headers["Content-Type"] != "application/bitzeny-paymentrequest":
+                    or response.headers["Content-Type"] != "application/bellcoin-paymentrequest":
                         data = None
                         error = "payment URL not pointing to a payment request handling server"
                     else:

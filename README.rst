@@ -1,4 +1,4 @@
-Electrum for BitZeny- Lightweight BitZeny client
+Electrum for Bellcoin- Lightweight Bellcoin client
 =====================================
 
 ::
@@ -7,7 +7,7 @@ Electrum for BitZeny- Lightweight BitZeny client
   Origin Author: Thomas Voegtlin
   Port Maintainer: y-chan
   Language: Python (>= 3.6)
-  Homepage: https://zny.electrum-jp.net/
+  Homepage: https://bell.electrum-jp.net/
 
 
 .. image:: https://travis-ci.org/spesmilo/electrum.svg?branch=master
@@ -27,7 +27,7 @@ Electrum for BitZeny- Lightweight BitZeny client
 Getting started
 ===============
 
-Electrum for BitZeny is a pure python application. If you want to use the
+Electrum for Bellcoin is a pure python application. If you want to use the
 Qt interface, install the Qt dependencies::
 
     sudo apt-get install python3-pyqt5
@@ -60,8 +60,8 @@ Development version
 
 Check out the code from GitHub::
 
-    git clone git://github.com/bitzeny-electrum/electrum-zny.git
-    cd electrum-zny
+    git clone git://github.com/bellcoin-electrum/electrum-bell.git
+    cd electrum-bell
 
 Run install (this should install dependencies)::
 
