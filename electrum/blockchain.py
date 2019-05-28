@@ -264,7 +264,7 @@ class Blockchain(util.PrintError):
 #            raise Exception("hash mismatches with expected: {} vs {}".format(expected_header_hash, _hash))
 #        if constants.net.TESTNET:
 #            return
-#        if height % 2016 != 0 and height // 2016 < len(constants.net.CHECKPOINTS) or height >= len(constants.net.CHECKPOINTS)*2016 and height <= len(constants.net.CHECKPOINTS)*2016 + 25:
+#        if height % 2016 != 0 and height // 2016 < len(constants.net.CHECKPOINTS) or height >= len(constants.net.CHECKPOINTS)*2016 and height <= len(constants.net.CHECKPOINTS)*2016 + 90:
 #            return
 #        bits = cls.target_to_bits(target)
 #        if bits != header.get('bits'):
@@ -485,7 +485,7 @@ class Blockchain(util.PrintError):
 
             prev = chain.get(i - 1)
             #prev = self.read_header(i - 1)
-            if prev = None:
+            if prev is None:
                 prev = self.read_header(i - 1)
                 #prev = chain.get(i - 1)
 
@@ -499,7 +499,8 @@ class Blockchain(util.PrintError):
 
             sum_target += target / (k * N)
 
-        t = max(k // 10)
+        if t < k // 10
+            t = k // 10
 
         next_target = t * sum_target
 
@@ -519,7 +520,7 @@ class Blockchain(util.PrintError):
             return 0
         else:
             return
-#            return self.get_target_lmwa(height, chain)
+#            return self.get_target_lwma(height, chain)
 
     @classmethod
     def bits_to_target(cls, bits: int) -> int:
