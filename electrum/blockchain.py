@@ -463,55 +463,61 @@ class Blockchain(util.PrintError):
                 raise MissingHeader(height)
             return hash_header(header)
 
-    def get_target_dgwv3(self, height, chain=None) -> int:
+    def get_target_lwma(self, height, chain=None) -> int:
 
-        last = chain.get(height - 1)
-        #last = self.read_header(height - 1)
-        if last is None:
-            last = self.read_header(height - 1)
-            #last = chain.get(height - 1)
+        prev = chain.get(height - 1)
+        #prev = self.read_header(height - 1)
+        if prev is None:
+            prev = self.read_header(height - 1)
+            #prev = chain.get(height - 1)
+
+        pprev = chain.get(height - 2)
+        #pprev = self.read_header(height - 2)
+        if pprev = None:
+            pprev = self.read_header(height - 2)
+            #pprev = chain.get(height - 2)
 
         # params
-        pindex = last
-        nActualTimespan = 0
-        PastBlocks = 24
-        PastTargetAvg = 0
-        bnTarget = 0
+        T = 60
+        N = 90
+        k = N * (N + 1) * T / 2
+        sum_target = 0
+        target = 0
+        next_target = 0
+        t = 0
+        j = 0
+        solvetime = 0
 
-        # DGWv3 PastBlocks = 25 Because checkpoint don't have preblock data.
-        if height < len(self.checkpoints)*2016 + PastBlocks + 1:
-            return 0
+        for i in range(height - N + 1, height + 1):
+            cur = chain.get(i)
+            #cur = self.read_header(i)
+            if cur is None:
+                cur = self.read_header(i)
+                #cur = chain.get(i)
 
-        if last is None or height - 1 < PastBlocks:
-            return MAX_TARGET
+            prev = chain.get(i - 1)
+            #prev = self.read_header(i - 1)
+            if prev = None:
+                prev = self.read_header(i - 1)
+                #prev = chain.get(i - 1)
 
-        for i in range(1, PastBlocks + 1):
-            bnTarget = self.bits_to_target(pindex.get('bits'))
-            PastTargetAvg += bnTarget
+            solvetime = cur.get('timestamp') - prev.get('timestamp')
+            solvetime = max(-6*T, min(solvetime, 6*T))
 
-            pindex = chain.get((height-1) - i)
-            #pindex = self.read_header((height-1) - i)
-            if pindex is None:
-                pindex = self.read_header((height-1) - i)
-                #pindex = chain.get((height-1) - i)
+            j += 1
+            t += solvetime * j
 
-        PastTargetAvg //= PastBlocks
+            target = self.bits_to_target(cur.get('bits'))
 
-        bnNew = PastTargetAvg
+            sum_target += target / (k * N)
 
-        nActualTimespan = last.get('timestamp') - pindex.get('timestamp')
+        t = max(k // 10)
 
-        nTargetTimespan = PastBlocks * 90 #1.5 miniutes
+        next_target = t * sum_target
 
-        nActualTimespan = max(nActualTimespan, nTargetTimespan//3)
-        nActualTimespan = min(nActualTimespan, nTargetTimespan*3)
+        next_target = min(next_target, MAX_TARGET)
 
-        # retarget
-        bnNew *= nActualTimespan
-        bnNew //= nTargetTimespan
-        bnNew = min(bnNew, MAX_TARGET)
-
-        return bnNew
+        return next_target
 
 
     def get_target(self, height, chain=None) -> int:
@@ -525,7 +531,7 @@ class Blockchain(util.PrintError):
             return 0
         else:
             return
-#            return self.get_target_dgwv3(height, chain)
+#            return self.get_target_lmwa(height, chain)
 
     @classmethod
     def bits_to_target(cls, bits: int) -> int:
