@@ -499,7 +499,7 @@ class Blockchain(util.PrintError):
 
             sum_target += target / (k * N)
 
-        if t < k // 10
+        if t < k // 10:
             t = k // 10
 
         next_target = t * sum_target
