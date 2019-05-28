@@ -465,18 +465,6 @@ class Blockchain(util.PrintError):
 
     def get_target_lwma(self, height, chain=None) -> int:
 
-        prev = chain.get(height - 1)
-        #prev = self.read_header(height - 1)
-        if prev is None:
-            prev = self.read_header(height - 1)
-            #prev = chain.get(height - 1)
-
-        pprev = chain.get(height - 2)
-        #pprev = self.read_header(height - 2)
-        if pprev = None:
-            pprev = self.read_header(height - 2)
-            #pprev = chain.get(height - 2)
-
         # params
         T = 60
         N = 90
