@@ -83,7 +83,7 @@ setup(
             'icons/*',
         ],
     },
-    scripts=['electrum/electrum-bell'],
+    scripts=['electrum/electrum'],
     data_files=data_files,
     description="Lightweight Bellcoin Wallet",
     author="y-chan",
