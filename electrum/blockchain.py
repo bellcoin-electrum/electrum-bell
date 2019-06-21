@@ -557,7 +557,7 @@ class Blockchain(Logger):
         elif height // 2016 < len(self.checkpoints) and height % 2016 != 0:
             return 0
         else:
-            return
+            return 0
 #            return self.get_target_lwma(height, chain)
 
     @classmethod
