@@ -3,5 +3,10 @@
         "BTC",
         "USD",
         "JPY"
+    ],
+    "CoinGecko": [
+        "BTC",
+        "USD",
+        "JPY"
     ]
 }

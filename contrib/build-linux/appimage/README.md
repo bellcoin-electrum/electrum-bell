@@ -25,9 +25,9 @@ folder.
     ```
     $ sudo docker run -it \
         --name electrum-appimage-builder-cont \
-        -v $PWD:/opt/electrum \
+        -v $PWD:/opt/electrum-bell \
         --rm \
-        --workdir /opt/electrum/contrib/build-linux/appimage \
+        --workdir /opt/electrum-bell/contrib/build-linux/appimage \
         electrum-appimage-builder-img \
         ./build.sh
     ```

@@ -157,12 +157,35 @@ async def _to_fiat(self, btc, ccy, res):
 class BiteBTC(ExchangeBase):
 
     async def get_rates(self, ccy):
-        json = await self.get_json('bitebtc.com', '/api/v1/ticker?market=koto_btc')
+        json = await self.get_json('bitebtc.com', '/api/v1/ticker?market=bell_btc')
         btc = Decimal(json['result']['price'])
 
         res = {}
         if ccy == 'BTC':
             res['BTC'] = btc
+        else:
+            await _to_fiat(self, btc, ccy, res)
+
+        return res
+
+
+class CoinGecko(ExchangeBase):
+
+    async def get_rates(self, ccy):
+        btcjson = await self.get_json('api.coingecko.com', '/api/v3/simple/price?ids=bellcoin&vs_currencies=btc')
+        usdjson = await self.get_json('api.coingecko.com', '/api/v3/simple/price?ids=bellcoin&vs_currencies=usd')
+        jpyjson = await self.get_json('api.coingecko.com', '/api/v3/simple/price?ids=bellcoin&vs_currencies=jpy')
+        btc = Decimal(btcjson['bellcoin']['btc'])
+        usd = Decimal(uedjson['bellcoin']['usd'])
+        jpy = Decimal(jpyjson['bellcoin']['jpy'])
+
+        res = {}
+        if ccy == 'BTC':
+            res['BTC'] = btc
+        elif ccy == 'USD':
+            res['USD'] = usd
+        elif ccy == 'JPY':
+            res['JPY'] = jpy
         else:
             await _to_fiat(self, btc, ccy, res)
 

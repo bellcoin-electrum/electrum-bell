@@ -642,6 +642,8 @@ def time_difference(distance_in_time, include_seconds):
 mainnet_block_explorers = {
     'bellcoin-blockbook.ilmango.work': ('https://bellcoin-blockbook.ilmango.work/',
                        {'tx': 'tx/', 'addr': 'address/'}),
+    'explorer.bellcoin.web4u.jp': ('https://explorer.bellcoin.web4u.jp/',
+                       {'tx': 'tx/', 'addr': 'address/'}),
 }
 
 testnet_block_explorers = {
