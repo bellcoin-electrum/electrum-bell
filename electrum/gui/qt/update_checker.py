@@ -23,7 +23,7 @@ class UpdateCheck(QWidget, Logger):
     download_url = "https://bell.electrum-jp.net"
 
     VERSION_ANNOUNCEMENT_SIGNING_KEYS = (
-        "ZwbjGkzEBuY9CCuwoRkna3LBRAGY2HcWMH",
+        "B4tkcYFRG3sWhtuPtbYCWf4K87F5ARDKJs",
     )
 
     def __init__(self, main_window, latest_version=None):
