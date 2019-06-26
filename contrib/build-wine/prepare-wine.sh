@@ -17,8 +17,6 @@ LIBUSB_FILENAME=libusb-1.0.22.7z
 LIBUSB_URL=https://prdownloads.sourceforge.net/project/libusb/libusb-1.0/libusb-1.0.22/$LIBUSB_FILENAME?download
 LIBUSB_SHA256=671f1a420757b4480e7fadc8313d6fb3cbb75ca00934c417c1efa6e77fb8779b
 
-YESPOWER_PYTHON_URL=https://github.com/bellcoin-electrum/bell_yespower_python3/releases/download/v1.0.2/bell_yespower-1.0.2-cp36-cp36m-win32.whl
-
 PYTHON_VERSION=3.6.8
 
 ## These settings probably don't need change
@@ -89,9 +87,6 @@ verify_hash $LIB_GCC_FILENAME $LIB_GCC_SHA256
 tar Jxfv $LIB_GCC_FILENAME
 
 cp bin/libgcc_s_dw2-1.dll $WINEPREFIX/drive_c/$PYTHON_FOLDER/Lib/site-packages/
-
-# install bell_yespower
-$PYTHON -m pip install $YESPOWER_PYTHON_URL
 
 mkdir -p $WINEPREFIX/drive_c/tmp
 cp secp256k1/libsecp256k1.dll $WINEPREFIX/drive_c/tmp/
