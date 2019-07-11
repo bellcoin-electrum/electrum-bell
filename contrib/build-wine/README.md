@@ -36,7 +36,7 @@ folder.
         mkdir -p $FRESH_CLONE && \
         cd $FRESH_CLONE  && \
         git clone https://github.com/bellcoin-electrum/electrum-bell.git && \
-        cd electrum-zny
+        cd electrum-bell
     ```
 
     And then build from this directory:
