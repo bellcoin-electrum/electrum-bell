@@ -10,18 +10,12 @@ Electrum for Bellcoin- Lightweight Bellcoin client
   Homepage: https://bell.electrum-jp.net/
 
 
-.. image:: https://travis-ci.org/spesmilo/electrum.svg?branch=master
-    :target: https://travis-ci.org/spesmilo/electrum
+.. image:: https://travis-ci.org/bitzeny-electrum/electrum-zny.svg?branch=master-3.3.x
+    :target: https://travis-ci.org/bitzeny-electrum/electrum-zny
     :alt: Build Status
-.. image:: https://coveralls.io/repos/github/spesmilo/electrum/badge.svg?branch=master
-    :target: https://coveralls.io/github/spesmilo/electrum?branch=master
+.. image:: https://coveralls.io/repos/github/bitzeny-electrum/electrum-zny/badge.svg?branch=master-3.3.x
+    :target: https://coveralls.io/github/bitzeny-electrum/electrum-zny?master-3.3.x
     :alt: Test coverage statistics
-.. image:: https://d322cqt584bo4o.cloudfront.net/electrum/localized.svg
-    :target: https://crowdin.com/project/electrum
-    :alt: Help translate Electrum online
-
-
-
 
 
 Getting started
@@ -76,7 +70,7 @@ Compile the protobuf description file::
 Create translations (optional)::
 
     sudo apt-get install python-requests gettext
-    ./contrib/make_locale
+    ./contrib/pull_locale
 
 
 
