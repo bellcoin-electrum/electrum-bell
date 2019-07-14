@@ -1,7 +1,7 @@
 #:import VERSION electrum.version.ELECTRUM_VERSION
 
 Popup:
-    title: _("About Electrum for BitZeny")
+    title: _("About Electrum for Bellcoin")
     BoxLayout:
         orientation: 'vertical'
         spacing: '10dp'
@@ -26,10 +26,10 @@ Popup:
                 size_hint_x: 0.4
             TopLabel:
                 markup: True
-                text: '[color=6666ff][ref=x]https://zny.electrum-jp.net[/ref][/color]'
+                text: '[color=6666ff][ref=x]https://bell.electrum-jp.net[/ref][/color]'
                 on_ref_press:
                     import webbrowser
-                    webbrowser.open("https://zny.electrum-jp.net")
+                    webbrowser.open("https://bell.electrum-jp.net")
                 size_hint_x: 0.6
             TopLabel:
                 text: _('Developers')

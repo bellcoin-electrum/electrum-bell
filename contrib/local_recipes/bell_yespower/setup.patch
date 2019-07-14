@@ -1,6 +1,6 @@
-diff -crN zny_yespower_0_5_python3.orig/setup.py zny_yespower_0_5_python3/setup.py
-*** zny_yespower_0_5_python3.orig/setup.py      Sun Jul 14 13:38:22 2019
---- zny_yespower_0_5_python3/setup.py   Sun Jul 14 13:38:35 2019
+diff -crN bell_yespower_python3.orig/setup.py bell_yespower_python3/setup.py
+*** bell_yespower_python3.orig/setup.py Mon Jul 15 00:54:29 2019
+--- bell_yespower_python3/setup.py      Mon Jul 15 00:55:03 2019
 ***************
 *** 6,12 ****
                                          'yespower-opt.c',
@@ -9,7 +9,7 @@ diff -crN zny_yespower_0_5_python3.orig/setup.py zny_yespower_0_5_python3/setup.
 !                             extra_compile_args=['-O2', '-funroll-loops', '-fomit-frame-pointer'],
                               include_dirs=['.'])
 
-  setup (name = 'zny_yespower_0_5',
+  setup (name = 'bell_yespower',
 --- 6,12 ----
                                          'yespower-opt.c',
                                          'sha256.c'
@@ -17,4 +17,4 @@ diff -crN zny_yespower_0_5_python3.orig/setup.py zny_yespower_0_5_python3/setup.
 !                             extra_compile_args=['-O2'],
                               include_dirs=['.'])
 
-  setup (name = 'zny_yespower_0_5',
+  setup (name = 'bell_yespower',
